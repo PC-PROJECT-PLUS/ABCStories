@@ -82,95 +82,66 @@
 </section>
 
 <div class="divStart">
-  <app-book-slider
-    title="Riprendi a leggere"
-    subtitle="Scorri per scoprire tutti i titoli"
-    [books]="booksA">
+  <app-book-slider title="Riprendi a leggere" subtitle="Scorri per scoprire tutti i titoli" [books]="booksA">
   </app-book-slider>
 
-  <app-book-slider
-    title="Popolari"
-    subtitle="I libri più famosi del momento"
-    [books]="booksB">
+  <app-book-slider title="Popolari" subtitle="I libri più famosi del momento" [books]="booksB">
   </app-book-slider>
-</div>
-<!--
-<div class="divStart" style="min-height: 100vh; margin-top: 0;">
-  <div class="slider-section">
-    <div class="slider-header">
-      <h2>Riprendi a leggere</h2>
-      <p>Scorri per scoprire tutti i titoli</p>
-    </div>
 
-    <div class="slider-outer" (wheel)="onMouseWheel($event)">
-      <button class="nav-arrow nav-left" [class.hidden]="currentIndex === 0" (click)="prev()">&#10094;</button>
-
-      <div class="slider-track-wrapper">
-        <div class="slider-track" [style.transform]="'translateX(-' + (currentIndex * cardWidth) + 'px)'">
-          @for (book of books; track book.title) {
-          <div class="book-card">
-            <div class="book-cover">
-              <img [src]="book.img" [alt]="book.title" loading="lazy" />
-              <div class="book-spine"></div>
-
-              <div class="action-icon bookmark-icon" [class.active]="book.bookmarked" (click)="toggleBookmark(book); $event.stopPropagation()">
-                <svg viewBox="0 0 24 24">
-                  <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-                </svg>
-              </div>
-
-              <div class="action-icon heart-icon" [class.active]="book.liked" (click)="toggleLike(book); $event.stopPropagation()">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          }
+  <!-- Aggiungere immagine a sfondo della classifica -->
+  <h2 class="text-center">Classifica</h2>
+  <p class="text-center">I libri migliori del momento</p>
+  <section class="ranking-container">
+    <div class="podium-display">
+      <div class="book-card podium-item third">
+        <div class="rank-badge">3°</div>
+        <div class="book-cover">
+          <img [src]="booksB[2]?.img" [alt]="booksB[2]?.title">
+        </div>
+        <div class="book-info">
+          <p class="book-title">{{booksB[2]?.title}}</p>
+          <p class="book-author">{{booksB[2]?.author}}</p>
         </div>
       </div>
 
-      <button class="nav-arrow nav-right" [class.hidden]="currentIndex >= maxIndex" (click)="next()">&#10095;</button>
-    </div>
-  </div>
-
-
-  <div class="slider-section">
-    <div class="slider-header">
-      <h2>Riprendi a leggere</h2>
-      <p>Scorri per scoprire tutti i titoli</p>
-    </div>
-
-    <div class="slider-outer" (wheel)="onMouseWheel($event)">
-      <button class="nav-arrow nav-left" [class.hidden]="currentIndex === 0" (click)="prev()">&#10094;</button>
-
-      <div class="slider-track-wrapper">
-        <div class="slider-track" [style.transform]="'translateX(-' + (currentIndex * cardWidth) + 'px)'">
-          @for (book of books; track book.title) {
-          <div class="book-card">
-            <div class="book-cover">
-              <img [src]="book.img" [alt]="book.title" loading="lazy" />
-              <div class="book-spine"></div>
-
-              <div class="action-icon bookmark-icon" [class.active]="book.bookmarked" (click)="toggleBookmark(book); $event.stopPropagation()">
-                <svg viewBox="0 0 24 24">
-                  <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-                </svg>
-              </div>
-
-              <div class="action-icon heart-icon" [class.active]="book.liked" (click)="toggleLike(book); $event.stopPropagation()">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          }
+      <div class="book-card podium-item first">
+        <div class="rank-badge">1°</div>
+        <div class="book-cover">
+          <img [src]="booksB[0]?.img" [alt]="booksB[0]?.title">
+        </div>
+        <div class="book-info">
+          <p class="book-title">{{booksB[0]?.title}}</p>
+          <p class="book-author">{{booksB[0]?.author}}</p>
         </div>
       </div>
 
-      <button class="nav-arrow nav-right" [class.hidden]="currentIndex >= maxIndex" (click)="next()">&#10095;</button>
+      <div class="book-card podium-item second">
+        <div class="rank-badge">2°</div>
+        <div class="book-cover">
+          <img [src]="booksB[1]?.img" [alt]="booksB[1]?.title">
+        </div>
+        <div class="book-info">
+          <p class="book-title">{{booksB[1]?.title}}</p>
+          <p class="book-author">{{booksB[1]?.author}}</p>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="horizontal-ranking-wrapper">
+      <div class="slider-track center-track">
+        @for (index of [3, 4, 5, 6, 7, 8, 9]; track index) {
+        <div class="book-card">
+          <div class="rank-badge small">{{index + 1}}°</div>
+          <div class="book-cover">
+            <img [src]="booksB[index]?.img" [alt]="booksB[index]?.title">
+          </div>
+          <div class="book-info">
+            <p class="book-title">{{booksB[index]?.title}}</p>
+            <p class="book-author">{{booksB[index]?.author}}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
 </div>
--->

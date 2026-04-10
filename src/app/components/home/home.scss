@@ -1,3 +1,5 @@
+@use "../../../scss/colori.scss";
+
 :host {
   display: block;
 }
@@ -174,22 +176,6 @@
     margin-bottom: 1.5rem;
     max-width: 460px;
   }
-
-  /*button {
-    padding: 0.95rem 1.5rem;
-    border: none;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #111;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.25s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      background: white;
-    }
-  }*/
 }
 
 .nav-btn {
@@ -315,4 +301,187 @@
   background-color: #fefadc;
   position: relative;
   z-index: 1;
+}
+
+// CLASSIFICA
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+.book-card {
+  position: relative;
+  cursor: pointer;
+  
+  &:hover {
+    .book-cover {
+      transform: translateY(-12px) scale(1.05); 
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35); 
+      
+      &::before {
+        opacity: 1;
+        animation: borderFlow 6s linear infinite; 
+      }
+    }
+  }
+}
+
+.book-cover {
+  position: relative; 
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease; 
+  overflow: visible; 
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    position: relative;
+    z-index: 2; 
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -6px; 
+    border-radius: 18px; 
+    background: var(--tropicalTheme);
+    background-size: 300% 300%; 
+    z-index: 1; 
+    opacity: 0; 
+    transition: opacity 0.4s ease, transform 0.4s ease; 
+    pointer-events: none; 
+  }
+}
+
+.book-info {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.book-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2c1a0e;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-author {
+  font-size: 0.75rem;
+  color: #8a6a4a;
+  margin: 2px 0 0;
+}
+
+.ranking-container {
+  padding: 0 2rem;
+  padding-top: 40px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; 
+  background: #fefadc;
+}
+
+.podium-display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2rem;
+
+  .podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.first {
+      width: 240px;
+
+      .book-cover {
+        width: 240px;
+        height: 340px;
+      }
+
+      .book-title {
+        font-size: 1rem;
+      }
+    }
+
+    &.second {
+      width: 210px;
+
+      .book-cover {
+        width: 210px;
+        height: 300px;
+      }
+    }
+
+    &.third {
+      width: 190px;
+
+      .book-cover {
+        width: 190px;
+        height: 270px;
+      }
+    }
+  }
+}
+
+.horizontal-ranking-wrapper {
+  width: 100%;
+  padding: 20px 0;
+
+  .slider-track {
+    display: flex;
+    gap: 1.5rem;
+
+    &.center-track {
+      justify-content: center;
+      flex-wrap: wrap; 
+    }
+
+    .book-card {
+      flex: 0 0 185px;
+
+      .book-cover {
+        width: 185px;
+        height: 255px;
+      }
+    }
+  }
+}
+
+.rank-badge {
+  position: absolute;
+  top: -15px;
+  left: -10px;
+  width: 50px;
+  height: 50px;
+  background: #2c1a0e;
+  color: #fefadc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none; 
+
+  &.small {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+    top: -10px;
+    left: -10px;
+  }
 }
