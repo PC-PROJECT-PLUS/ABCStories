@@ -1,0 +1,176 @@
+<app-navbar></app-navbar>
+
+<section class="hero-slider">
+  <!-- Div per sfondo dinamico con sfocatura background -->
+  <div class="ambient-bg"></div>
+  <div class="ambient-overlay"></div>
+  <div class="hero-bottom-fade"></div>
+
+  <div class="slider-shell">
+    <button class="nav-btn prev">&#10094;</button>
+
+    <div class="slider-viewport">
+      <div class="slide active"
+        data-bg="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+          alt="Adventure slide" />
+        <div class="slide-content">
+          <span class="badge">Fantasy</span>
+          <h1>Storie che prendono vita</h1>
+          <p>Esplora mondi illustrati, racconti magici e nuove avventure da scoprire.</p>
+          <button class="btnCont mt-4 fade-button">
+            Scopri
+          </button>
+        </div>
+      </div>
+
+      <div class="slide"
+        data-bg="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80">
+        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80"
+          alt="Books slide" />
+        <div class="slide-content">
+          <span class="badge">Community</span>
+          <h1>Condividi le tue storie</h1>
+          <p>Pubblica, leggi e connettiti con chi ama raccontare tanto quanto te.</p>
+          <button class="btnCont mt-4 fade-button">
+            Unisciti
+          </button>
+        </div>
+      </div>
+
+      <div class="slide"
+        data-bg="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80">
+        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1600&q=80"
+          alt="Books slide" />
+        <div class="slide-content">
+          <span class="badge">Community</span>
+          <h1>Condividi le tue storie</h1>
+          <p>Pubblica, leggi e connettiti con chi ama raccontare tanto quanto te.</p>
+          <button class="btnCont mt-4 fade-button">
+            Unisciti
+          </button>
+        </div>
+      </div>
+
+      <div class="slide"
+        data-bg="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?auto=format&fit=crop&w=1600&q=80">
+        <img src="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?auto=format&fit=crop&w=1600&q=80"
+          alt="Reading slide" />
+        <div class="slide-content">
+          <span class="badge">Community</span>
+          <h1>Nuovi racconti ogni settimana</h1>
+          <p>Lasciati ispirare da nuove trame, personaggi e mondi da immaginare.</p>
+          <button class="btnCont mt-4 fade-button">
+            Esplora
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-btn next">&#10095;</button>
+  </div>
+
+  <div class="dots-wrapper">
+    <div class="dots">
+      @for (item of [].constructor(slidesCount); track $index) {
+      <div class="dot" [class.active]="$index === current" (click)="goToSlide($index); restartAutoSlide()">
+      </div>
+      }
+    </div>
+  </div>
+
+</section>
+
+<div class="divStart">
+  <app-book-slider
+    title="Riprendi a leggere"
+    subtitle="Scorri per scoprire tutti i titoli"
+    [books]="booksA">
+  </app-book-slider>
+
+  <app-book-slider
+    title="Popolari"
+    subtitle="I libri più famosi del momento"
+    [books]="booksB">
+  </app-book-slider>
+</div>
+<!--
+<div class="divStart" style="min-height: 100vh; margin-top: 0;">
+  <div class="slider-section">
+    <div class="slider-header">
+      <h2>Riprendi a leggere</h2>
+      <p>Scorri per scoprire tutti i titoli</p>
+    </div>
+
+    <div class="slider-outer" (wheel)="onMouseWheel($event)">
+      <button class="nav-arrow nav-left" [class.hidden]="currentIndex === 0" (click)="prev()">&#10094;</button>
+
+      <div class="slider-track-wrapper">
+        <div class="slider-track" [style.transform]="'translateX(-' + (currentIndex * cardWidth) + 'px)'">
+          @for (book of books; track book.title) {
+          <div class="book-card">
+            <div class="book-cover">
+              <img [src]="book.img" [alt]="book.title" loading="lazy" />
+              <div class="book-spine"></div>
+
+              <div class="action-icon bookmark-icon" [class.active]="book.bookmarked" (click)="toggleBookmark(book); $event.stopPropagation()">
+                <svg viewBox="0 0 24 24">
+                  <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                </svg>
+              </div>
+
+              <div class="action-icon heart-icon" [class.active]="book.liked" (click)="toggleLike(book); $event.stopPropagation()">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      <button class="nav-arrow nav-right" [class.hidden]="currentIndex >= maxIndex" (click)="next()">&#10095;</button>
+    </div>
+  </div>
+
+
+  <div class="slider-section">
+    <div class="slider-header">
+      <h2>Riprendi a leggere</h2>
+      <p>Scorri per scoprire tutti i titoli</p>
+    </div>
+
+    <div class="slider-outer" (wheel)="onMouseWheel($event)">
+      <button class="nav-arrow nav-left" [class.hidden]="currentIndex === 0" (click)="prev()">&#10094;</button>
+
+      <div class="slider-track-wrapper">
+        <div class="slider-track" [style.transform]="'translateX(-' + (currentIndex * cardWidth) + 'px)'">
+          @for (book of books; track book.title) {
+          <div class="book-card">
+            <div class="book-cover">
+              <img [src]="book.img" [alt]="book.title" loading="lazy" />
+              <div class="book-spine"></div>
+
+              <div class="action-icon bookmark-icon" [class.active]="book.bookmarked" (click)="toggleBookmark(book); $event.stopPropagation()">
+                <svg viewBox="0 0 24 24">
+                  <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                </svg>
+              </div>
+
+              <div class="action-icon heart-icon" [class.active]="book.liked" (click)="toggleLike(book); $event.stopPropagation()">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      <button class="nav-arrow nav-right" [class.hidden]="currentIndex >= maxIndex" (click)="next()">&#10095;</button>
+    </div>
+  </div>
+</div>
+-->

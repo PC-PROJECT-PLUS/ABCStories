@@ -1,0 +1,744 @@
+@use "colori.scss";
+
+// BARRA DI RICERCA NAVBAR
+.container-input {
+  position: relative;
+  display: inline-block;
+}
+
+.input {
+  width: 150px;
+  padding: 10px 0 10px 40px;
+  border-radius: 9999px;
+  border: 4px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    var(--tropicalTheme) border-box;
+  background-size: 200% 100%;
+  transition: width 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  opacity: 0.8;
+  font-size: smaller;
+}
+
+.container-input svg {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.input:focus,
+.input:hover {
+  width: 250px;
+  opacity: 1;
+  animation: gradientMove 2s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// SOTTOLINEATURA
+.link {
+  position: relative;
+}
+
+.link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  background: var(--tropicalTheme);
+}
+
+.link:hover::before {
+  width: 100%;
+}
+
+// DROPDOWN CUSTOM
+.dropdown-menu {
+  display: block !important;
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  visibility: hidden !important;
+  background: var(--tropicalThemeYellow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.dropdown-menu.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+}
+
+.nav-item.dropdown:hover>.dropdown-menu {
+  display: block !important; // forza la visibilità
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+}
+
+.dropdown-item {
+  color: black !important;
+  font-size: medium !important;
+  transition: all 0.2s ease !important;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: black !important;
+}
+
+// Codice per PANNELLO DESTRO DROPDOWN
+.mega-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.mega-left {
+  min-width: 200px;
+  max-height: 335px;
+  overflow-y: auto;
+  direction: rtl; // mette la barra di scorrimento a sinistra
+}
+
+.mega-left>* {
+  direction: ltr; // a tutti gli altri elementi impone di andare a destra
+}
+
+.mega-left::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mega-left::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.mega-item {
+  position: static;
+}
+
+.mega-item:hover .mega-right {
+  opacity: 1;
+  transform: translateY(0) !important;
+  visibility: visible;
+}
+
+.mega-left .mega-item {
+  border-radius: 10px; // arrotondamento dei bordi
+  transition: background 0.3s ease;
+}
+
+.mega-left .mega-item:hover {
+  background: rgba(0, 0, 0, 0.2); // colore opaco al passaggio del mouse
+}
+
+.mega-left .mega-item .dropdown-item {
+  padding: 10px 10px; // margine interno, così il colore non tocca i bordi
+  border-radius: 10px; // stesso arrotondamento
+}
+
+.mega-right {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 250px;
+  max-width: 500px;
+  max-height: 80vh;
+  padding: 10px;
+  background: var(--tropicalThemeGreen);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mega-right .scroll-images {
+  display: flex;
+  flex-wrap: nowrap; // con questo metto le immagini su un'unica riga
+  gap: 10px; // metto dei margini tra le immagini
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.mega-right .scroll-images .container img {
+  height: 210px;
+  object-fit: contain;
+  border-radius: 5px;
+  display: block;
+}
+
+.mega-right .fixed-content {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.mega-item:hover .mega-right {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) !important;
+}
+
+.mega-right .scroll-images::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mega-right .scroll-images::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+// CODICE SCORRIMENTO IMMAGINI PANNELLO DESTRO DROPDOWN
+
+.image-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%);
+}
+
+// sinistra
+.image-slider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+
+  backdrop-filter: blur(40px) brightness(1.1);
+
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+// destra
+.image-slider::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+
+  backdrop-filter: blur(40px) brightness(1.1);
+
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+.image-slider.no-left {
+  -webkit-mask-image: linear-gradient(to right,
+      black 0%,
+      black 80%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      black 0%,
+      black 80%,
+      transparent 100%);
+
+
+  &::before {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.image-slider.no-right {
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 20%,
+      black 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 20%,
+      black 100%);
+
+
+  &::after {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.image-slider.no-left.no-right {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+.image-slider.no-left::before {
+  opacity: 0;
+}
+
+.image-slider.no-right::after {
+  opacity: 0;
+}
+
+.scroll-images {
+  scroll-behavior: smooth;
+  transition: filter 0.3s ease;
+}
+
+.scroll-images.scrolling {
+  filter: blur(2px);
+}
+
+.scroll-images .container {
+  transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+  will-change: transform, opacity, filter;
+}
+
+.scroll-images .container:hover {
+  transform: scale(1.08) translateY(-5px);
+  opacity: 1;
+  filter: brightness(1.05);
+}
+
+.img-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 22px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10 !important;
+  transition: opacity 0.25s ease;
+}
+
+.img-arrow.left {
+  left: 5px;
+}
+
+.img-arrow.right {
+  right: 5px;
+}
+
+.img-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+// ANIMAZIONE FRECCIA PANNELLO DROPDOWN
+.fixed-content .arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.fixed-content .arrow:hover {
+  transform: translateX(-10px);
+}
+
+.fixed-content .arrow i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.fixed-content .arrow:hover i {
+  animation: bounceArrow 0.6s infinite alternate;
+}
+
+@keyframes bounceArrow {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(8px);
+  }
+}
+
+// FOOTER
+.footerLink {
+  color: black;
+  text-decoration: none;
+  font-size: larger;
+}
+
+.footerSection {
+  background: var(--pastelThemeWhite);
+}
+
+.divCentrale {
+  background: var(--pastelThemeWhite);
+  border-radius: 50px 50px 0 0;
+  overflow: hidden;
+  padding-top: 8vh;
+  padding-bottom: 5vh;
+  position: relative;
+}
+
+.footerImageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+
+.footerMainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 520px;
+  border-radius: 32px;
+  transform: scale(1.02);
+  transition: transform 0.6s ease;
+}
+
+.footerImageWrap:hover .footerMainImage {
+  transform: scale(1.06);
+}
+
+.footerLinksArea {
+  padding-left: 2rem;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.footerTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #111;
+}
+
+.footerLink {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.35s ease;
+  display: inline-block;
+  width: fit-content;
+  position: relative;
+  transform-origin: left center;
+}
+
+.footerLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 1.5px;
+  background: black;
+  transition: width 0.35s ease;
+}
+
+.footerLink:hover::after {
+  width: 100%;
+}
+
+.footerColumn.is-blur .footerLink {
+  opacity: 0.35;
+  filter: blur(2px);
+  transform: translateX(0);
+}
+
+.footerColumn.is-blur .footerLink.active-link {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateX(8px);
+}
+
+// BOTTONI PRINCIPALI
+.btnCont {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: var(--pastelThemeOrange);
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s !important;
+  cursor: pointer;
+  outline: none;
+}
+
+.btnCont:hover {
+  background-color: var(--peachOrange);
+  box-shadow: 0px 15px 20px var(--pastelThemeOrange);
+  color: #fff;
+  transform: translateY(-7px) !important;
+}
+
+.btnCont2 {
+  @extend .btnCont;
+  background: var(--tropicalThemeRed);
+  position: relative;
+  z-index: 10;
+}
+
+.btnCont2:hover {
+  @extend .btnCont;
+  background-color: var(--peachRed);
+  box-shadow: 0px 15px 20px var(--tropicalThemeRed);
+}
+
+.btnCont3 {
+  @extend .btnCont;
+  background: var(--tropicalThemeGreen);
+}
+
+.btnCont3:hover {
+  @extend .btnCont;
+  background-color: var(--buttonFantasy);
+  box-shadow: 0px 15px 20px var(--tropicalThemeGreen);
+}
+
+.btnCont:active,
+.btnCont2:active,
+.btnCont3:active,
+.btnCont4:active,
+.btnCont5:active {
+  transform: translateY(-1px) !important;
+}
+
+.btnCont4 {
+  @extend .btnCont2;
+  background: var(--tropicalTheme-reverse);
+}
+
+.btnCont4:hover {
+  @extend .btnCont;
+  background: var(--peachGradient);
+  box-shadow: 0px 15px 20px var(--tropicalThemeRed);
+}
+
+.btnCont5 {
+  @extend .btnCont;
+  background: var(--tropicalThemeYellow);
+  color: black;
+}
+
+.btnCont5:hover {
+  @extend .btnCont;
+  background: var(--buttonGialli);
+  box-shadow: 0px 15px 20px var(--tropicalThemeYellow);
+  color: black;
+}
+
+// PARTE RESPONSIVE FOOTER
+@media (max-width: 992px) {
+  .footerLinksArea {
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .footerImageWrap,
+  .footerMainImage {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .divCentrale {
+    padding: 10vh 0;
+    border-radius: 32px 32px 0 0;
+  }
+
+  .footerImageWrap,
+  .footerMainImage {
+    min-height: 280px;
+    border-radius: 24px;
+  }
+
+  .footerTitle {
+    margin-top: 1rem;
+  }
+}
+
+// ANIMAZIONE INPUT E CODICE INPUT LOGIN/REGISTER
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.inputGroup {
+  position: relative;
+  width: 100%;
+  height: 55px;
+  padding: 5px;
+  border-radius: 32px;
+  background: linear-gradient(90deg,
+      #b7f8d6 0%,
+      #dff7b2 25%,
+      #f8e9a1 50%,
+      #d7c8ff 75%,
+      #b7f8d6 100%);
+  background-size: 300% 300%;
+  animation: borderFlow 8s linear infinite;
+  transition: box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.inputGroup:hover {
+  filter: brightness(1.02);
+}
+
+.inputGroup:focus-within {
+  box-shadow: 0 0 0 4px rgba(180, 150, 255, 0.12);
+  filter: brightness(1.03);
+}
+
+.inputGroup input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 29px;
+  background: whitesmoke;
+  padding: 0 20px;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  color: rgb(30, 30, 30);
+  caret-color: rgb(255, 81, 0);
+}
+
+.inputGroup input::placeholder {
+  color: transparent;
+}
+
+.inputGroup label {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(70, 70, 70, 0.8);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.inputGroup input:focus~label,
+.inputGroup input:valid~label {
+  top: 0;
+  transform: translateY(-50%) scale(1);
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.divisore {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: lowercase;
+  font-size: 13px;
+  column-gap: 18px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 17px;
+}
+
+.divisore span:nth-child(3),
+.divisore span:nth-child(1) {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(219, 219, 219);
+}
+
+// ANIMAZIONE LINK REGISTRATI LOGIN
+.animated-underline {
+  position: relative;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+// linea effettiva
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease-in-out;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}

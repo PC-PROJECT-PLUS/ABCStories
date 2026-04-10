@@ -1,0 +1,49 @@
+<div class="container-fluid vh-100 p-0 ">
+  <div class="row g-0 h-100">
+
+    <div class="col-md-6 d-flex justify-content-center align-items-center animate-left">
+      <div class="w-75" style="max-width: 500px;">
+        <div class="d-flex justify-content-center align-items-center mb-4 logo-wrapper">
+          <a [routerLink]="['/']"><img src="assets/Loghi/Logo2.png" alt="Logo" height="60px" id="logo"
+              class="me-3 logo" /></a>
+        </div>
+        <div class="text-center mb-5 title-wrapper">
+          <h1 class="title">Bentornato</h1>
+        </div>
+
+        <form class="w-100 form-wrapper" (ngSubmit)="onLogin($event)">
+          <div class="inputGroup mb-3">
+            <input type="text" required autocomplete="off" id="email" [(ngModel)]="email" name="email">
+            <label for="email">Inserisci l'email</label>
+          </div>
+          <div class="inputGroup">
+            <input type="password" required autocomplete="off" id="password" [(ngModel)]="password" name="password">
+            <label for="password">Inserisci la tua password</label>
+          </div>
+          <button class="btnCont5 mt-3 w-100 submit-btn" type="submit">
+            Accedi
+          </button>
+
+          <div class="divisore">
+            <span></span>
+            <span>or</span>
+            <span></span>
+          </div>
+
+          <button class="btnCont3 w-100 d-flex align-items-center justify-content-center google-btn" type="submit">
+            <span class="me-2"><img src="assets/Icone/google.png" alt="" height="25px"></span>Continua con Google
+          </button>
+          <p class="text-center mt-4">
+            Non hai ancora un account?
+            <a [routerLink]="['/register']" class="animated-underline">Registrati</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-none d-md-block h-100 animate-right">
+      <img src="assets/Presentazione/provaLogin.jpg" alt="Preview" class="w-100 h-100 object-fit-cover image-right">
+    </div>
+
+  </div>
+</div>

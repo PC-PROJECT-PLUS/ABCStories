@@ -1,0 +1,327 @@
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid d-flex align-items-center cont1-2 fade-bg hero-zoom">
+  <div class="col-md-6 offset-md-6 text-content text-area">
+
+    <h1 class="mb-4 fade-item">
+      A tutto ciò che le parole sanno esprimere
+    </h1>
+    <p class="fade-item" style="font-size: large;">
+      “La gente pensa che le storie siano modellate dalle persone.<br>
+      In realtà sono le storie a modellare le persone.”
+    </p>
+    <a class="fade-item" href="https://en.wikipedia.org/wiki/Terry_Pratchett" target="_blank"
+      style="font-size: large; text-decoration:none; color:black;">
+      <strong>Terry Pratchett</strong>
+    </a><br>
+
+    <button class="btnCont mt-4 fade-button">
+      Inizia l'avventura
+    </button>
+
+  </div>
+</div>
+
+
+<div class="cont4">
+  <div class="contDiv1 container-fluid reveal-section">
+    <div class="container d-flex align-items-center">
+      <div class="col-md-6 section">
+        <h1 class="mb-3 reveal-item">Esplora storie oltre i limiti della fantasia</h1>
+        <p class="reveal-item">
+          Immergiti in un universo di generi infiniti. Dai regni dimenticati del fantasy alle sfumature più intime del
+          romance, ogni pagina è un invito a scoprire mondi nuovi. Non limitarti a leggere: trova la storia che sembra
+          scritta apposta per te.
+        </p>
+
+        <button class="btnCont2 mt-4 reveal-button">
+          Esplora
+        </button>
+      </div>
+      <!--<div class="col-md-6">
+        <img src="assets/Presentazione/prova2.png" alt="" class="img-fluid rounded" />
+      </div>-->
+    </div>
+  </div>
+
+  <div class="contDiv2 container-fluid reveal-section">
+    <div class="container d-flex align-items-center">
+      <!--<div class="col-md-6">
+        <img src="assets/Presentazione/prova2.png" alt="" class="img-fluid rounded" />
+      </div>-->
+      <div class="offset-md-6 col-md-6">
+        <h1 class="mb-3 reveal-item">Crea la tua libreria su misura</h1>
+        <!--<h1 class="mb-3">Scopri i talenti di domani</h1>-->
+        <p class="reveal-item">
+          Il tuo spazio, le tue regole. Salva i racconti che ti hanno colpito al cuore e portali sempre con te,
+          ovunque
+          tu sia. Organizza le tue letture in collezioni personalizzate per avere ogni emozione a portata di click,
+          pronta per essere rivissuta.
+        </p>
+
+        <button class="btnCont2 mt-4 reveal-button">
+          Organizza i tuoi sogni
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="contDiv3 container-fluid reveal-section">
+    <div class="container d-flex align-items-center">
+      <div class="col-md-6">
+        <h1 class="mb-3 reveal-item">Segui i tuoi artisti preferiti</h1>
+        <p class="reveal-item">
+          Sostieni le voci che ami e non perdere nemmeno un aggiornamento. Segui i tuoi autori preferiti per ricevere
+          notifiche in tempo reale su ogni nuovo capitolo pubblicato. Entra nel vivo del processo creativo e diventa
+          parte integrante del loro successo.
+        </p>
+
+        <button class="btnCont2 mt-4 reveal-button">
+          Trova i tuoi idoli
+        </button>
+      </div>
+      <!--<div class="col-md-6">
+        <img src="assets/Presentazione/prova2.png" alt="" class="img-fluid rounded" />
+      </div>-->
+    </div>
+  </div>
+
+  <div class="contDiv3 container-fluid reveal-section">
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="col-md-6">
+        <h1 class="mb-3 reveal-item text-center">Scopri i talenti di domani</h1>
+        <p class="reveal-item text-center">
+          Ogni grande autore è stato una voce nuova. Qui trovi storie originali, emozioni autentiche
+          e autori emergenti pronti a sorprendere il mondo. Scopri oggi i nomi che domani faranno la differenza.
+        </p>
+
+        <div class="d-flex align-items-center justify-content-center">
+          <button class="btnCont2 mt-4 reveal-button">
+            Esplora
+          </button>
+        </div>
+      </div>
+      <!--<div class="col-md-6">
+        <img src="assets/Presentazione/prova2.png" alt="" class="img-fluid rounded" />
+      </div>-->
+    </div>
+  </div>
+</div>
+
+<div class="cont1-3 genres-section">
+  <div class="d-flex align-items-center justify-content-center flex-column">
+    <h1 class="mb-5 text-center genre-reveal">Esplora tutti i generi</h1>
+
+    <div class="imgWrapper container-fluid genre-reveal">
+      <button class="slider-arrow left" *ngIf="showLeftGenre" (click)="scrollGenresLeft()">
+        &#10094;
+      </button>
+
+      <div class="genreSlider mb-3" #genreSlider (scroll)="checkGenreArrows()">
+        <button *ngFor="let genre of genres" class="btnGeneri me-2" [ngStyle]="{
+          'background': selectedGenre === genre ? 'var(--button' + genre + ')' : 'var(--button' + genre + ')'
+        }" (click)="selectGenre(genre)">
+          <span>{{ genre }}</span>
+        </button>
+      </div>
+
+      <button class="slider-arrow right" *ngIf="showRightGenre" (click)="scrollGenresRight()">
+        &#10095;
+      </button>
+    </div>
+
+    <div class="imgWrapper booksWrapper mt-5 mb-4 genre-reveal">
+      <button class="slider-arrow left" *ngIf="showLeft" (click)="scrollLeft()">
+        &#10094;
+      </button>
+
+      <div class="imgSlider" #slider (scroll)="checkArrows()">
+        <div class="imgCard genre-card" *ngFor="let book of filteredBooks">
+          <img [src]="book.img" [alt]="book.title">
+        </div>
+      </div>
+
+      <button class="slider-arrow right" *ngIf="showRight" (click)="scrollRight()">
+        &#10095;
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 genre-reveal ctaGenres">
+      <button class="btnCont">Scopri tutti i generi</button>
+    </div>
+  </div>
+</div>
+
+<div class="sfondo">
+  <div class="cont2">
+    <div class="container">
+      <h1 class="text-center main-title" style="margin-bottom: 90px;">Guadagna dalle tue storie</h1>
+
+      <div class="container sectionCard">
+        <div class="row mt-5">
+          <div class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCard mt-3">
+            <h2 class="mb-3 gain-card-item" style="font-size: 40px;">Racconti</h2>
+            <p class="text-center gain-card-item">
+              Trasforma la tua passione in una rendita concreta. Carica i tuoi romanzi o racconti completi e decidi tu
+              il prezzo di vendita. Avrai il controllo totale sulla tua opera e potrai raggiungere migliaia di lettori
+              pronti a sostenere il tuo talento.
+            </p>
+
+            <button class="btnCont3 mt-4 gain-card-item">Esplora</button>
+          </div>
+
+          <div class="col-md-7 mt-3">
+            <img src="assets/Presentazione/prova2.png" class="img-fluid gain-image" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="container sectionCard">
+        <div class="row mt-5">
+          <div class="col-md-7 mt-3">
+            <img src="assets/Presentazione/prova2.png" class="img-fluid gain-image" alt="">
+          </div>
+
+          <div class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCard mt-3">
+            <h2 class="mb-3 gain-card-item" style="font-size: 40px;">Capitoli</h2>
+            <p class="text-center gain-card-item">
+              Non devi aspettare di aver finito il libro per iniziare a guadagnare. Offri ai tuoi fan la possibilità di
+              sbloccare i singoli capitoli in anteprima. È la strategia perfetta per creare suspense e garantirti un
+              flusso costante di entrate durante la scrittura.
+            </p>
+
+            <button class="btnCont3 mt-4 gain-card-item">Esplora</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container sectionCard">
+        <div class="row mt-5 ">
+          <div class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCard mt-3">
+            <h2 class="mb-3 gain-card-item" style="font-size: 40px;">Ricavo</h2>
+            <p class="text-center gain-card-item">
+              Il tuo lavoro merita il giusto valore. Riceverai la maggior parte del ricavato da ogni vendita. Per
+              garantirti pagamenti sicuri e promozione costante, la piattaforma trattiene solo una piccola percentuale
+              fissa, lasciando a te il grosso del profitto.
+            </p>
+
+            <button class="btnCont3 mt-4 gain-card-item">Esplora
+            </button>
+          </div>
+          <div class="col-md-7 mt-3">
+            <img src="assets/Presentazione/prova2.png" class="img-fluid gain-image" alt="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container d-flex align-items-center cont1-4 fade-bg ">
+    <div class="container sectionCard">
+      <div class="row mt-5">
+        <div class="col-md-7 mt-3">
+          <img src="assets/Presentazione/prova2.png" class="img-fluid gain-image" alt="">
+        </div>
+        <div class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCard mt-3">
+          <h2 class="mb-3 gain-card-item" style="font-size: 40px;">Supporto</h2>
+          <p class="text-center gain-card-item">
+            I tuoi lettori non sono solo spettatori: possono diventare i tuoi primi sostenitori.
+            Ricevi supporto diretto da chi ama ciò che scrivi e costruisci una community pronta ad accompagnarti
+            capitolo dopo capitolo, progetto dopo progetto.
+          </p>
+
+          <button class="btnCont3 mt-4 gain-card-item">Esplora
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="cont5">
+    <div class="container d-flex align-items-center flex-column">
+      <div class="d-flex align-items-center justify-content-center flex-column col-6 mt-5 community-intro"
+        style="padding: 13vh 0;">
+        <h1 class="mb-3 text-center community-intro-item">Entra a far parte della nostra comunity</h1>
+        <p class="text-center community-intro-item">
+          Non limitarti a leggere o scrivere: condividi la tua passione con migliaia di sognatori come te.
+          Partecipa alle discussioni, scambia feedback preziosi con altri autori e scopri in anteprima i nuovi talenti.
+          Insieme, diamo vita a un luogo dove ogni voce trova il suo pubblico e ogni storia la sua casa.
+        </p>
+        <button class="btnCont5 mt-4 community-intro-button">Unisciti alla comunity</button>
+      </div>
+
+      <h1 class="text-center community-main-title" style="margin-top: 14vh;">Condividi storie, idee ed emozioni</h1>
+      <div class="row mt-5 d-flex justify-content-center">
+        <div
+          class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCardComunity mt-3 me-2 ms-2 community-card">
+          <h2 class="mb-3 text-center community-card-item" style="font-size: 40px;">Lascia il segno tra le righe</h2>
+          <p class="text-center community-card-item">
+            Ogni storia merita una voce che la accolga. Commenta i capitoli che ti emozionano, condividi le tue
+            impressioni e crea connessioni autentiche con autori e lettori che parlano la tua stessa lingua.
+          </p>
+
+          <button class="btnCont3 mt-4 community-card-item">Partecipa alla conversazione
+          </button>
+        </div>
+        <div
+          class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCardComunity mt-3 me-2 ms-2 community-card">
+          <h2 class="mb-3 text-center community-card-item" style="font-size: 40px;">Dai forma a ciò che immagini</h2>
+          <p class="text-center community-card-item">
+            Ogni grande storia nasce da un’idea, da un’emozione o da una scintilla improvvisa. Scrivi liberamente,
+            sperimenta il tuo stile e trasforma la tua immaginazione in qualcosa che possa davvero lasciare il segno.
+          </p>
+
+          <button class="btnCont3 mt-4 community-card-item">Inizia a scrivere
+          </button>
+        </div>
+      </div>
+
+      <div class="row mt-2 d-flex justify-content-center">
+        <div
+          class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCardComunity mt-3 me-2 ms-2 community-card">
+          <h2 class="mb-3 text-center community-card-item" style="font-size: 40px;">Condividi il tuo percorso creativo
+          </h2>
+          <p class="text-center community-card-item">
+            Racconta cosa stai costruendo, annuncia nuovi capitoli, mostra il dietro le quinte delle tue idee e tieni
+            viva la connessione con chi ti segue. Ogni aggiornamento può diventare parte del tuo viaggio.
+          </p>
+
+          <button class="btnCont3 mt-4 community-card-item">Pubblica un aggiornamento
+          </button>
+        </div>
+        <div
+          class="col-md-5 d-flex justify-content-center align-items-center flex-column contDivCardComunity mt-3 me-2 ms-2 community-card">
+          <h2 class="mb-3 text-center community-card-item" style="font-size: 40px;">Porta le tue storie più lontano</h2>
+          <p class="text-center community-card-item">
+            Le parole hanno più forza quando viaggiano. Condividi ciò che ami, fai scoprire nuove storie alla community
+            e aiuta le voci emergenti a raggiungere nuovi lettori pronti a lasciarsi sorprendere.
+          </p>
+
+          <button class="btnCont3 mt-4 community-card-item">Diffondi ciò che ami
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid d-flex align-items-center cont1 family-section">
+  <div class="container d-flex align-items-center">
+    <div class="col-md-6 section">
+      <h1 class="mb-3 family-item">Le storie ci uniscono. Le persone ci fanno restare.</h1>
+      <p class="family-item">
+        Non è solo una piattaforma. È uno spazio fatto di emozioni, immaginazione e legami autentici.
+        Un luogo dove puoi leggere, scrivere, condividere e sentirti finalmente parte di qualcosa.
+      </p>
+
+      <button class="btnCont5 mt-4 family-button">
+        Entra nella famiglia
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

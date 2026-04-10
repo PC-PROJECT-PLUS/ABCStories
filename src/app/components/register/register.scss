@@ -1,0 +1,10 @@
+@use "../../../scss/colori.scss";
+
+.col-scrollable::-webkit-scrollbar {
+  width: 10px;
+}
+
+.col-scrollable::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}

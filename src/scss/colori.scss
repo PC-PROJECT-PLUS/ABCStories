@@ -1,0 +1,31 @@
+:root {
+  --black: black;
+  --tropicalTheme: linear-gradient(90deg, hsla(141, 81%, 87%, 1) 0%, hsla(41, 88%, 75%, 1) 50%, hsla(358, 82%, 71%, 1) 100%);
+  --tropicalTheme45deg: linear-gradient(45deg, hsla(141, 81%, 87%, 1) 0%, hsla(41, 88%, 75%, 1) 50%, hsla(358, 82%, 71%, 1) 100%);
+  --tropicalTheme-reverse: linear-gradient(90deg, hsla(358, 82%, 71%, 1) 0%, hsla(41, 88%, 75%, 1) 50%, hsla(141, 81%, 87%, 1) 100%);
+  --tropicalTheme45deg-reverse: linear-gradient(45deg, hsla(358, 82%, 71%, 1) 0%, hsla(41, 88%, 75%, 1) 50%, hsla(141, 81%, 87%, 1) 100%);
+  --tropicalTheme-45deg-reverse: linear-gradient(-45deg, hsla(358, 82%, 71%, 1) 0%, hsla(41, 88%, 75%, 1) 50%, hsla(141, 81%, 87%, 1) 100%);
+  --tropicalTheme-90deg-reverse: linear-gradient(-90deg, hsla(358, 82%, 71%, 1) 0%, hsla(41, 88%, 75%, 1) 50%, hsla(141, 81%, 87%, 1) 100%);
+  --tropicalTheme2: linear-gradient(-90deg, hsla(141, 81%, 87%, 1) 0%, hsla(41, 88%, 75%, 1) 50%);
+  --tropicalThemeGreen: hsla(141, 81%, 87%, 1); // #c3f9d6
+  --tropicalThemeYellow: hsla(41, 88%, 75%, 1); // #f7d487
+  --tropicalThemeRed: hsla(358, 82%, 71%, 1); // #f2787c
+  --pastelTheme: linear-gradient(180deg, #fefadc 0%, #f6d4ba 50%, #f3b391 100%);
+  --pastelThemeWhite: #fefadc;
+  --pastelThemeYellow: #f6d4ba;
+  --pastelThemeOrange: #f3b391;
+  --pastelTheme45deg: linear-gradient(45deg, #fefadc 0%, #f6d4ba 50%, #f3b391 100%);
+  --pastelTheme45deg-reverse: linear-gradient(45deg, #f3b391 0%, #f6d4ba 50%, #fefadc 100%);
+  --pastelTheme90deg: linear-gradient(90deg, #fefadc 0%, #f6d4ba 50%, #f3b391 100%);
+  --pastelTheme2: linear-gradient(90deg, #f6d4ba 0%, #fefadc 50%);
+  --pastelTheme2-reverse: linear-gradient(90deg, #fefadc 0%, #f6d4ba 50%);
+  --peachGradient: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
+  --peachRed: hsla(333, 100%, 53%, 1);
+  --peachOrange: hsla(33, 94%, 57%, 1);
+  --buttonWestern: rgba(143, 112, 56);
+  --buttonRomance: rgba(237, 121, 202);
+  --buttonGialli: hsla(58, 100%, 68%, 1);
+  --buttonHorror: red;
+  --buttonAvventura: rgba(86, 220, 232);
+  --buttonFantasy: hsla(141, 60%, 70%, 1);
+}

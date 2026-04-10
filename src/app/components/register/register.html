@@ -1,0 +1,77 @@
+<div class="container-fluid vh-100 p-0">
+  <div class="row g-0 h-100">
+
+    <!-- Colonna sinistra scrollabile -->
+    <div class="col-md-6 d-flex justify-content-center align-items-start animate-left col-scrollable"
+         style="height: 100vh; overflow-y: auto;">
+      <div class="w-75" style="max-width: 500px; padding: 2rem 0;">
+        <div class="d-flex justify-content-center align-items-center mb-4 logo-wrapper mt-5">
+          <a [routerLink]="['/']">
+            <img src="assets/Loghi/Logo2.png" alt="Logo" height="60px" id="logo" class="me-3 logo" />
+          </a>
+        </div>
+        <div class="text-center title-wrapper animate-left">
+          <h1 class="title">Crea un nuovo account</h1>
+        </div>
+        <p class="text-center mb-5">
+          Entra a far parte della nostra famiglia. Milioni di storie e utenti ti stanno aspettando.
+        </p>
+
+        <form class="w-100 form-wrapper" (ngSubmit)="onRegister($event)">
+          <div class="inputGroup mb-3">
+            <input type="text" required autocomplete="off" id="email" name="email">
+            <label for="email">Inserisci la tua email</label>
+          </div>
+          <div class="inputGroup mb-3">
+            <input type="text" required autocomplete="off" id="username" name="username">
+            <label for="username">Inserisci il tuo nome utente</label>
+          </div>
+          <div class="inputGroup mb-3">
+            <input type="number" required autocomplete="off" id="telefono" name="telefono">
+            <label for="telefono">Inserisci il tuo numero di telefono</label>
+          </div>
+          <div class="inputGroup mb-3">
+            <input type="text" required autocomplete="off" id="dataNascita" name="dataNascita">
+            <label for="dataNascita">Inserisci la tua data di nascita</label>
+          </div>
+          <div class="inputGroup mb-3">
+            <input type="password" required autocomplete="off" id="password" name="password">
+            <label for="password">Inserisci una password</label>
+          </div>
+          <div class="inputGroup mb-3">
+            <input type="password" required autocomplete="off" id="confirm-password" name="confirm-password">
+            <label for="confirm-password">Ripeti la password</label>
+          </div>
+
+          <button class="btnCont5 mt-3 w-100 submit-btn" type="submit">Registrati</button>
+
+          <div class="divisore">
+            <span></span>
+            <span>or</span>
+            <span></span>
+          </div>
+
+          <button class="btnCont3 w-100 d-flex align-items-center justify-content-center google-btn" type="submit">
+            <span class="me-2">
+              <img src="assets/Icone/google.png" alt="" height="25px">
+            </span>
+            Continua con Google
+          </button>
+
+          <p class="text-center mt-4">
+            Hai già un account?
+            <a [routerLink]="['/login']" class="animated-underline">Accedi</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-none d-md-block animate-right"
+         style="height: 100vh; position: relative;">
+      <img src="assets/Presentazione/provaRegister.jpg"
+           alt="Preview" class="w-100 h-100 object-fit-cover image-right"
+           style="position: sticky; top: 0;">
+    </div>
+
+  </div>
+</div>

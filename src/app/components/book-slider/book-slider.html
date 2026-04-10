@@ -1,0 +1,37 @@
+<div class="slider-section">
+  <div class="slider-header">
+    <h2>{{ title }}</h2>
+    <p>{{ subtitle }}</p>
+  </div>
+
+  <div class="slider-outer" (wheel)="onMouseWheel($event)">
+    <button class="nav-arrow nav-left" [class.hidden]="currentIndex === 0" (click)="prev()">&#10094;</button>
+
+    <div class="slider-track-wrapper">
+      <div class="slider-track" [style.transform]="'translateX(-' + (currentIndex * cardWidth) + 'px)'">
+        @for (book of books; track book.title) {
+          <div class="book-card">
+            <div class="book-cover">
+              <img [src]="book.img" [alt]="book.title" loading="lazy" />
+              <div class="book-spine"></div>
+              <div class="action-icon bookmark-icon" [class.active]="book.bookmarked"
+                (click)="toggleBookmark(book); $event.stopPropagation()">
+                <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+              </div>
+              <div class="action-icon heart-icon" [class.active]="book.liked"
+                (click)="toggleLike(book); $event.stopPropagation()">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </div>
+            </div>
+            <div class="book-info">
+              <p class="book-title">{{ book.title }}</p>
+              <p class="book-author">{{ book.author }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <button class="nav-arrow nav-right" [class.hidden]="currentIndex >= maxIndex" (click)="next()">&#10095;</button>
+  </div>
+</div>

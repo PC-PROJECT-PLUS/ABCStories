@@ -1,0 +1,28 @@
+@use "colori.scss";
+@use "componenti.scss";
+
+html,
+body {
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.8px;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--pastelThemeWhite) !important;
+}
+
+.default { // classe di default per i temi
+  .input {
+    background:
+    linear-gradient(white, white) padding-box,
+    var(--tropicalTheme) border-box;
+  }
+}

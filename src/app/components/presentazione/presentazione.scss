@@ -1,0 +1,628 @@
+@use "../../../scss/colori.scss";
+@use 'css-fade/css';
+
+h1 {
+  font-size: clamp(2rem, 5vw, 55px);
+  line-height: 1.1;
+}
+
+// CONTENITORI DIV PRINCIPALI
+.cont1-2 {
+  position: relative;
+  padding-top: 24vh !important;
+  padding-bottom: 25vh !important;
+  background-image: url("/assets/Pippi/pippiIniziale.png");
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  isolation: isolate;
+  overflow: hidden;
+  opacity: 0;
+  //transform: scale(1.08);
+  width: 100%;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.cont1-3 {
+  position: relative;
+  top: 0;
+  //padding: 12vh 1rem 12vh !important;
+  background: var(--tropicalThemeYellow);
+  margin-top: 0 !important;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.cont1-4 {
+  position: relative;
+  //padding-top: 24vh !important;
+  padding-bottom: 25vh !important;
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cont1 {
+  padding-top: 31vh !important;
+  padding-bottom: 31vh !important;
+  background: var(--tropicalThemeGreen);
+  width: 100%;
+}
+
+.cont2 {
+  padding-top: 15vh;
+  isolation: isolate;
+  width: 100%;
+  background: var(--tropicalTheme-reverse);
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.cont3 {
+  padding: 15vh 0px;
+  background: var(--pastelTheme);
+}
+
+.cont4 {
+  //padding-top: 14vh;
+  //padding-bottom: 24vh;
+  position: relative;
+  width: 100%;
+  z-index: 21; // numero per far isolare la stracazzo di freccia
+  background: var(--tropicalThemeYellow) !important;
+  border-radius: 50px 50px 0 0;
+  overflow: hidden;
+  will-change: transform;
+  margin: 0 !important;
+}
+
+.cont5 {
+  padding-top: 15vh;
+  background: var(--tropicalThemeGreen);
+  z-index: 30;
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  border-radius: 50px 50px 0 0;
+}
+
+.sfondo {
+  background: var(--tropicalTheme-reverse);
+}
+
+// ANIMAZIONE ELEMENTI CONTENITORI
+.reveal-section {
+  position: relative;
+}
+
+.reveal-item,
+.reveal-button {
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.genre-reveal,
+.genre-card {
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+// PICCOLO CSS PER ANIMAZIONE DEL BUTTON
+.fade-button {
+  display: inline-block;
+}
+
+// SFOCATURA TESTO SOTTO IMMAGINE
+.text-area {
+  position: relative;
+  padding: 2rem;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.text-area::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+
+  background: radial-gradient(circle at center,
+      rgba(253, 250, 230, 0.9) 0%,
+      rgba(253, 250, 230, 0.5) 40%,
+      rgba(253, 250, 230, 0.2) 65%,
+      rgba(253, 250, 230, 0.05) 80%,
+      transparent 100%);
+  filter: blur(40px);
+  z-index: -1;
+  opacity: 0.95;
+}
+
+.text-area>* {
+  position: relative;
+  filter: none;
+}
+
+.text-area h1 {
+  color: #111;
+}
+
+.text-area p {
+  color: black;
+}
+
+.text-area a {
+  color: #111;
+}
+
+.text-area h1,
+.text-area p {
+  text-shadow:
+    0 0 8px #fefadc,
+    0 0 2px #fefadc,
+    1px 1px 0 #fefadc,
+    -1px -1px 0 #fefadc;
+}
+
+// CONTENITORI PER DIV ALL'INTERNO DI CONT4
+.contDiv1 {
+  padding-top: 25vh !important;
+  padding-bottom: 25vh !important;
+  /*background-image: url("/assets/Pippi/pippiFantasia.png");
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;*/
+}
+
+.contDiv2 {
+  @extend .contDiv1;
+  /*background-image: url("/assets/Pippi/pippiLibreria.png");
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;*/
+}
+
+.contDiv3 {
+  @extend .contDiv1;
+  background-image: none;
+  margin-bottom: 50px;
+}
+
+.contDivCard {
+  padding: 80px;
+  border-radius: 50px;
+  background: var(--tropicalTheme-45deg-reverse);
+}
+
+.contDivCardComunity {
+  @extend .contDivCard;
+  background: var(--tropicalThemeYellow);
+}
+
+// ANIMAZIONI PER DIV CONT4
+.reveal-item {
+  will-change: transform, opacity, filter;
+}
+
+// singole card per cont4
+.singleCard {
+  position: relative;
+  overflow: hidden;
+  padding: 50px;
+  background: var(--tropicalTheme-45deg-reverse);
+  border-radius: 20px;
+}
+
+.singleCardCont4 {
+  @extend .singleCard;
+  padding: 90px;
+}
+
+.imgWrap {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.imgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.singleCard h2,
+.singleCard p {
+  position: relative;
+  z-index: 2;
+}
+
+// SLIDER BOTTONI
+.genreWrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.genreSlider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.genreSlider::-webkit-scrollbar {
+  display: none;
+}
+
+.btnGeneri {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: max-content;
+}
+
+.genreWrapper .slider-arrow {
+  position: absolute;
+  top: 50%;
+  //transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  //transition: all 0.2s ease;
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+    //transform: translateY(-50%) scale(1.1);
+  }
+
+  &.left {
+    left: 10px;
+  }
+
+  &.right {
+    right: 10px;
+  }
+}
+
+// BOTTONI PER PARTE DEI GENERI
+.btnGeneri {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0.9rem 2rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 500px;
+  overflow: hidden;
+  background: var(--buttonRomance);
+  color: ghostwhite;
+}
+
+.btnGeneri span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+}
+
+.btnGeneri:hover span {
+  color: black;
+}
+
+.btnGeneri::before,
+.btnGeneri::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.btnGeneri::before {
+  content: "";
+  background: #2b2a2a;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.btnGeneri:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+// SLIDER IMMAGINI
+.genres-section {
+  padding-inline: 0;
+}
+
+.genres-section h1 {
+  margin-bottom: 2.5rem !important;
+  padding-inline: 1rem;
+}
+
+.imgWrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.booksWrapper {
+  width: 100%;
+  overflow: visible;
+}
+
+.imgSlider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow-y: visible;
+}
+
+.imgSlider::-webkit-scrollbar {
+  display: none;
+}
+
+.imgSlider,
+.genreSlider {
+  min-width: 0;
+}
+
+.imgCard {
+  flex: 0 0 auto;
+  width: clamp(150px, 42vw, 220px);
+  border-radius: 18px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.imgCard img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.ctaGenres {
+  margin-top: 2.5rem !important;
+  padding-inline: 1rem;
+}
+
+.imgCard:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+// FRECCE SLIDER
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(34px, 5vw, 44px);
+  height: clamp(34px, 5vw, 44px);
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: clamp(18px, 2vw, 22px);
+  cursor: pointer;
+  z-index: 20;
+  transition: background 0.2s;
+}
+
+.slider-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-arrow.left {
+  left: 0.25rem;
+}
+
+.slider-arrow.right {
+  right: 0.25rem;
+}
+
+// MEDIA QUERY PER RESPONSIVE
+@media (max-width: 1399px) {
+  .imgCard {
+    flex: 0 0 170px;
+    width: 170px;
+  }
+}
+
+@media (max-width: 992px) {
+  .imgCard {
+    flex: 0 0 150px;
+    width: 150px;
+  }
+
+  .imgSlider {
+    gap: 0.8rem;
+    padding: 0 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .imgCard {
+    flex: 0 0 130px;
+    width: 130px;
+  }
+
+  .imgSlider {
+    gap: 0.7rem;
+    padding: 0 1rem;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .imgCard {
+    flex: 0 0 115px;
+    width: 115px;
+  }
+
+  .imgSlider {
+    gap: 0.6rem;
+    padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /*.cont1-3 {
+    padding: 10vh 1rem 8vh !important;
+  }*/
+
+  .genreSlider {
+    padding: 0 2.2rem;
+    gap: 0.6rem;
+  }
+
+  .imgSlider {
+    padding: 0 2.2rem;
+    gap: 0.8rem;
+  }
+
+  .btnGeneri {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .imgCard {
+    flex: 0 0 42vw;
+    width: 42vw;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+
+  .genre-reveal .btnCont {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imgCard {
+    flex: 0 0 52vw;
+    width: 52vw;
+  }
+
+  .genreSlider {
+    padding: 0 1rem;
+  }
+
+  .imgSlider {
+    padding: 0 1rem;
+  }
+
+  .btnGeneri {
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cont1-3 {
+    min-height: auto;
+    //padding-top: 5.5rem !important;
+    //padding-bottom: 5rem !important;
+  }
+
+  .genres-section h1 {
+    font-size: clamp(2rem, 8vw, 2.7rem);
+    line-height: 1.15;
+    margin-bottom: 1.8rem !important;
+    padding-inline: 1rem;
+  }
+
+  .genreSlider {
+    gap: 0.65rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 0 !important;
+  }
+
+  .btnGeneri {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+  }
+
+  .booksWrapper {
+    margin-top: 1.75rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .imgSlider {
+    gap: 14px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .imgCard {
+    width: clamp(145px, 43vw, 180px);
+    border-radius: 16px;
+  }
+
+  .imgCard img {
+    border-radius: 16px;
+  }
+
+  .ctaGenres {
+    margin-top: 2rem !important;
+  }
+
+  .ctaGenres .btnCont {
+    width: min(100%, 270px);
+    padding: 1rem 1.6rem;
+    font-size: 0.9rem;
+  }
+
+  .slider-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+
+  .slider-arrow.left {
+    left: 6px;
+  }
+
+  .slider-arrow.right {
+    right: 6px;
+  }
+}
